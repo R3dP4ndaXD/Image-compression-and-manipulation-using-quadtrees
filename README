@@ -1,0 +1,21 @@
+Am impartit rezolvarea in doua sectiuni, una ce tine de procesul de compresie al imaginii initiale, si una in care se pleaca de la fisierul comprimat si se ajunge inapoi la o imagine(care se vrea a fi cat mai apropiata de cea initiala).
+
+Prima parte vizeaza cerintele 1 si 2. Amandoua incep prin alocarea matricei asociata imaginii si prin citirea acesteia din fisireul de intrare.
+Urmeaza construirea recursiva a aborelui de compresie. Aici se sectioneaza matricea in sferturi pana se ajunge la zone colorate "omogen"(raportat la factorul de compresie folosit). Fiecare apel recusiv corespunde unui nou nod in arbore care se leaga conform regulilor impuse.
+Atat pentru matrice, cat si pentru arbore e nevoie se cate o functie de dezalocare a memorie. In cazul arborelui, dezalorarea de face recursiv, de la frunze catre radacina.
+
+pentru cerinta 1:
+-numarul de niveluri se afla prin apeluri recursive pana la frunze si calcularea nivelului maxim la iesire pe baza maximului rezultarelor din apelurile incheiate anterior
+-numarul de frunze se afla prin apeluri recursive pana la frunze, si insumarea tuturor rezultatelor la iesirea din recusivitate
+-dimensiunea laturii zonei cele mai mari nedizivate e direct determinata de primul nivel pe care se gasesc frunze. Acest nivel se afla printr-o functie care se apeleaza recursive pana la frunze si care calculeaza nivelul minim la iesire pe baza minimului rezultarelor din apelurile incheiate anterior
+
+Pentru cerinta 2:
+-se genereaza fisierul comprimat pe baza arborelui prin parcurgera lui pe niveluri folosind o coada cu pointeri la celulele arborelui. La fiecare pas se scoate un nod din coada, se scrie in fisier informatiile asociate si i se introduc fii in coada pentru a se sti mai departe de unde se scriu informatii in fisier. Procesul continua pana la epuizarea tuturor nodurilor din coada
+
+Pentru cerinta 3:
+-se construieste arborele pe baza informatiilor care se citesc din fisier (intai radacina si dupa in seturi de cate 4 noduri fii) si se foloseste o coada in care retine nodurile neterminale intalnite pentru a se sti unde trebuie legate mai departe urmatoarele seturile de noduri care vor fi citite
+-se aloca matricea
+-folosind o functie recursiva, se parcurge arborele pana la frunze si se "coloreaza" matricea la iesirea din recursivitate. Coodonatele si marimea zonei de colorat vin ca parametii ai functie si sunt determinati usor prin raportare la nodul parinte si la nivelul pe care se afla frunza(nivelul recursivitatii)
+-matricea rezultata se copiaza in fisierul de output
+-eliberarea memoriei
+
